@@ -1,0 +1,4 @@
+# 源项目路径与敏感映射，永不入 git
+local/
+.DS_Store
+__pycache__/
