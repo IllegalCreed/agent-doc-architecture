@@ -38,6 +38,10 @@
 - 构建 / 测试命令：仓库里没有可核实来源，尚无。
 - `notes.md` 中的部署说明：未核实，不得当规则执行。
 
+## 建立文档体系本身
+
+不强制为这次搭建建变更文档；若建，按上面阈值，状态写 `implemented`、`Next action` 写「等人验收」。
+
 ## 暂未采用
 
 overview、roadmap、releases、inherit_pairs（没有通用层）、CI。有了内容或需要时再建。

@@ -37,7 +37,7 @@
 | in-progress | 实施中 | 实现时同步回填 |
 | implemented | 代码已落地，验证未完整 | 读实施记录与测试记录 |
 | verified | 实现与验证均确认（含已发布） | 可作为当前事实 |
-| superseded | 被新变更接管 | **必须**跳到 `Replaced by` |
+| superseded | 被新变更接管 | **必须**跳到 `Replaced by`（doc-lint 检查它写的是主索引里已登记的 Stable ID：`BUNDLE-SUPERSEDE`）；原目录原地保留，不搬 |
 | deprecated | 不再代表当前行为，仍有历史价值 | 只用于追溯 |
 | obsolete | 已失效 | 不得作为实现依据 |
 | cancelled | 决定不做 | 不得作为实现依据；看取消原因 |

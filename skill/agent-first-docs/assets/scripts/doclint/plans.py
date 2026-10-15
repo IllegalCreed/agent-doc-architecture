@@ -122,12 +122,15 @@ def check_bundles(root: Path, baseline: dict) -> list[Finding]:
     candidates = [] if not base_dir.is_dir() else [
         p for p in base_dir.iterdir() if p.is_dir() and p.name not in RESERVED_DIRS
     ]
+    known_ids = {row.cells.get("Stable ID") for row in rows}
     for bundle in sorted(candidates):
-        findings += _check_bundle(bundle, base, registered.get(bundle.name), exceptions, since)
+        findings += _check_bundle(bundle, base, registered.get(bundle.name), exceptions, since, known_ids)
     return findings
 
 
-def _check_bundle(bundle: Path, base: str, row: IndexRow | None, exceptions: set[str], since: str) -> list[Finding]:
+def _check_bundle(
+    bundle: Path, base: str, row: IndexRow | None, exceptions: set[str], since: str, known_ids: set[str | None],
+) -> list[Finding]:
     """since 为接入配置里的规则生效日期；空串表示新项目，全部严格检查。"""
     rel = f"{base}/{bundle.name}"
     match = vocab.BUNDLE_DIR_RE.match(bundle.name)
@@ -171,6 +174,13 @@ def _check_bundle(bundle: Path, base: str, row: IndexRow | None, exceptions: set
         if not vocab.BUNDLE_OPTIONAL_RE.match(name) and f"{bundle.name}/{name}" not in exceptions:
             findings.append(Finding("ERROR", "BUNDLE-FILE", f"{rel}/{name}", "不在 bundle 文件白名单；脚本放 scripts/"))
     status = meta.get("Status")
+    if status == "superseded" and date >= since:
+        successors = re.findall(r"[A-Z]-\d{8}-\d{3}", meta.get("Replaced by", ""))
+        if not successors or any(s not in known_ids for s in successors):
+            findings.append(Finding(
+                "ERROR", "BUNDLE-SUPERSEDE", f"{rel}/requirements.md",
+                "状态 superseded 的 Replaced by 必须写已登记在主索引里的接任者 Stable ID",
+            ))
     if status in vocab.RECORD_REQUIRED_STATUSES:
         if "design.md" in names:
             lacking = [n for n in ("implementation.md", "test-cases.md") if n not in names]

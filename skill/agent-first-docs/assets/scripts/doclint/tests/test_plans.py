@@ -151,6 +151,24 @@ class CheckBundlesTest(unittest.TestCase):
                                 extra={"docs/plans/tracks/refactor/roadmap.md": "# r\n"})
         self.assertEqual(self.run_bundles(files), [])
 
+    def test_superseded_needs_existing_successor(self):
+        old = "20300101-d001-x"
+        base = self.registered(old, "D-20300101-001", status="superseded")
+        none = dict(base)
+        none[f"docs/plans/{old}/requirements.md"] = meta("D-20300101-001", "superseded", "docs")
+        self.assertEqual(codes(self.run_bundles(none)), ["BUNDLE-SUPERSEDE"])
+        ghost = dict(base)
+        ghost[f"docs/plans/{old}/requirements.md"] = meta("D-20300101-001", "superseded", "docs").replace(
+            "Replaced by: none", "Replaced by: D-20300102-009")
+        self.assertEqual(codes(self.run_bundles(ghost)), ["BUNDLE-SUPERSEDE"])
+        ok = dict(base)
+        ok["docs/plans/index.md"] += index_row("D-20300102-001", "docs", "乙", "draft", "-", "[requirements](20300102-d001-y/requirements.md)")
+        ok[f"docs/plans/{old}/requirements.md"] = meta("D-20300101-001", "superseded", "docs").replace(
+            "Replaced by: none", "Replaced by: D-20300102-001")
+        ok["docs/plans/20300102-d001-y/requirements.md"] = meta("D-20300102-001", "draft", "docs").replace(
+            "Replaces: none", "Replaces: D-20300101-001")
+        self.assertEqual(self.run_bundles(ok), [])
+
     def test_archive_is_not_a_bundle(self):
         files = self.registered("20300101-d001-x", "D-20300101-001",
                                 extra={"docs/plans/archive/20260101-f001-old/requirements.md": "# old\n"})
