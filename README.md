@@ -17,7 +17,7 @@ skill/   系列定稿后提炼的 Agent skill（待建）
 
 1. [Agent 不是失忆，是找不到入口——总模型](blog/01-agent-is-not-amnesiac.md)
 2. [让 Agent 只读该读的——路由](blog/02-routing.md)
-3. 让每份文档都有唯一的位置——寻址（待源项目治理落地后写）
-4. 让文档不烂——生命周期（待源项目治理落地后写）
+3. [让每份文档都有唯一的位置——寻址](blog/03-addressing.md)
+4. [让文档不烂——生命周期](blog/04-lifecycle.md)
 
 设计见 [specs/2026-10-14-blog-series-design.md](specs/2026-10-14-blog-series-design.md)。

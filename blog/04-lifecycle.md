@@ -224,7 +224,7 @@ python3 scripts/doc-lint.py gen-views
 
 1. [Agent 不是失忆，是找不到入口——大型项目文档分层设计（一）](01-agent-is-not-amnesiac.md)
 2. [让 Agent 只读该读的——文档路由设计（二）](02-routing.md)
-3. 让每份文档都有唯一的位置——文档寻址设计（三）（待发布）
+3. [让每份文档都有唯一的位置——文档寻址设计（三）](03-addressing.md)
 4. 让文档不烂——Agent 时代的文档生命周期（四）（本篇）
 
 <!-- 发布后改为链接：03-addressing.md -->
