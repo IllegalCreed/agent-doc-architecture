@@ -3,6 +3,7 @@
 > Status: approved
 > Last reviewed: 2026-10-14
 > 适用范围：使用 AI 协作开发的软件项目文档体系。
+> 复制进项目后：文中 `docs/overview.md`、`docs/roadmap.md`、封板流程等是**有内容时才建**的文档，不要为了消除悬空引用而预建空文档，改成「尚无」即可。
 > 项目落地：<复制进项目后，改为指向项目层文档模型的链接，如 `[项目层文档模型](documentation-model.md)`>
 
 ---
@@ -111,7 +112,7 @@ bundle 目录靠名字模式 `^\d{8}-[a-z]\d{3}-` 与 `tracks/` 区分。可直�
 | `test-infrastructure` | T | 测试框架、fixture、CI、补覆盖专项 |
 | `docs` | D | 文档规范、架构说明、文档治理 |
 | `ops` | O | 部署、环境、运维、监控 |
-| `release` | V（取 version） | 封板、出包、发布 |
+| `release` | C（取 cut；字母以 `vocab.py` 为准，定义后不得改） | 封板、出包、发布 |
 
 首字母映射由项目层定义，定义后不得改动。新 ID 首字母由建档时的 Type 决定，之后 Type 变化也不改 ID。**每个变更都必须有同一套需求、设计、实现、测试和索引回写机制。**
 

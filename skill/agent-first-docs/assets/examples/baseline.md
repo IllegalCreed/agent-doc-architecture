@@ -2,7 +2,7 @@
 
 `scripts/doclint/baseline.json` 是存量项目中途采用本规则时的**接入配置**：把接入那一刻已有的违规登记为豁免，让 `doc-lint` 立即 0 ERROR，此后只有**新增**违规会失败。JSON 不能写注释，所以逐键说明放在本文件；[baseline.json](baseline.json) 是一份虚构项目的示例。
 
-新项目不需要这个文件：文件不存在时 `doc-lint` 按「无豁免、断链基线 0、bundle 平铺在 `docs/plans/` 下」严格检查。
+新项目不需要这个文件（需要登记 `inherit_pairs` 时可新建一个只含该键的文件，不影响严格检查）：文件不存在时 `doc-lint` 按「无豁免、断链基线 0、bundle 平铺在 `docs/plans/` 下」严格检查。
 
 ## 生成
 
