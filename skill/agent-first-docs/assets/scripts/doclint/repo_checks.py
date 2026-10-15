@@ -170,6 +170,8 @@ def roadmap_banner_blocks(text: str) -> int:
 def check_freshness(root: Path, release: bool, tag_date: str | None, baseline: dict | None = None) -> list[Finding]:
     findings: list[Finding] = []
     strict = set((baseline or {}).get("strict_fresh", STRICT_FRESH))
+    if release and tag_date is None:
+        findings.append(Finding("INFO", "FRESH-NOTAG", "-", "仓库没有 tag，无法比较 Last reviewed 与最近发布；封板前先打 tag，过期检查才生效"))
     for path in current_fact_docs(root, baseline):
         rel = path.relative_to(root).as_posix()
         reviewed = last_reviewed(path.read_text(encoding="utf-8"))

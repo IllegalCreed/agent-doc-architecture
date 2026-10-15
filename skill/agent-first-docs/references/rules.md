@@ -1,6 +1,6 @@
 # 词表与格式速查
 
-`doc-lint` 检查的就是下面这些；改词表只改 `scripts/doclint/vocab.py`（唯一位置，标签是中文，要本地化就改它）。
+下面是 `doc-lint` 检查的主要内容（个别「顺序固定」「终态写 `-`」只是约定，工具不查）。词表集中在 `scripts/doclint/vocab.py`；要换语言，还需同步 `plans.py`、`cases.py` 里按中文列名取列的地方（vocab 的 docstring 有说明）。
 
 ## 变更：编号、元信息、状态
 
@@ -14,7 +14,7 @@
 | test-infrastructure | T | 测试框架、fixture、补覆盖专项 |
 | docs | D | 文档规范、治理 |
 | ops | O | 部署、环境、运维 |
-| release | C | 封板、出包（字母映射由项目层定义，定义后不得改） |
+| release | C | 封板、出包（字母映射在 `vocab.py`，想改就改那里，定义后不得再改） |
 
 **元信息块**（`requirements.md` 的 H1 之后，英文键，顺序固定；必需 7 键）：
 
@@ -73,6 +73,10 @@
 ## 用例层级
 
 工具词表固定为 `L1`–`L5` + `manual`（`vocab.py` 的 `CASE_LAYERS`）。含义由**项目测试规范**定义；项目还没有测试规范时，在用例主表顶部写一行「层级暂定义：L1 …」（尚无任何用例时可不写），等规范建立后迁过去。一个用例只归一个主层级。
+
+## 用例表
+
+主表表头固定九列：`Case ID | 标题 | 所属功能 / 模块 | Owner Plan | 层级 | 自动化路径 | 状态 | 最后验证 | 备注`；用例状态：`active` / `stale` / `deprecated` / `obsolete`。
 
 ## 模板
 

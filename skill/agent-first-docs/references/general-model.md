@@ -237,7 +237,7 @@ docs/plans/YYYYMMDD-<t>NNN-<slug>/
 示例：
 
 ```text
-docs/plans/20260601-f001-approval-status-amount-standard/
+docs/plans/20260601-f001-order-status-rules/
 ```
 
 `<t>` 是 Type 对应的小写首字母，`NNN` 是同一日期、同一首字母下从 001 递增的编号，用于避免同一天多个变更重名；Stable ID 为 `F-20260601-001`，与目录名机械互推。`<slug>` 使用英文或拼音短名，便于终端检索；标题中可以使用中文。

@@ -32,7 +32,7 @@ class CheckIndexTest(unittest.TestCase):
         self.assertEqual(self.run_index(thin), [])
 
     def test_duplicate_id(self):
-        row = index_row("F-20260909-005", "feature", "甲", "verified", "-", "x")
+        row = index_row("F-20300303-005", "feature", "甲", "verified", "-", "x")
         findings = self.run_index(INDEX_HEAD + row + row)
         self.assertEqual([(f.code, f.path) for f in findings], [("PLAN-ID-DUP", "docs/plans/index.md:6")])
 
@@ -76,7 +76,7 @@ class CheckBundlesTest(unittest.TestCase):
         return files
 
     def test_missing_index_skips_bundle_checks(self):
-        files = {"docs/plans/archive/old.md": "# x\n", "docs/plans/20261014-d001-x/requirements.md": "# x\n"}
+        files = {"docs/plans/archive/old.md": "# x\n", "docs/plans/20300101-d001-x/requirements.md": "# x\n"}
         self.assertEqual(self.run_bundles(files), [])
 
     def test_missing_bundle_root(self):
@@ -84,44 +84,44 @@ class CheckBundlesTest(unittest.TestCase):
         self.assertEqual(self.run_bundles(files, {"bundle_root": "docs/plans/changes"}), [])
 
     def test_clean_bundle(self):
-        self.assertEqual(self.run_bundles(self.registered("20261014-d001-x", "D-20261014-001")), [])
+        self.assertEqual(self.run_bundles(self.registered("20300101-d001-x", "D-20300101-001")), [])
 
     def test_bad_dir_name(self):
         files = self.registered(
-            "20261014-d001-x", "D-20261014-001", extra={"docs/plans/2026-bad/requirements.md": "# x\n"}
+            "20300101-d001-x", "D-20300101-001", extra={"docs/plans/2026-bad/requirements.md": "# x\n"}
         )
         self.assertEqual(codes(self.run_bundles(files)), ["BUNDLE-NAME"])
 
     def test_unregistered(self):
         files = {
             "docs/plans/index.md": INDEX_HEAD,
-            "docs/plans/20261014-d001-x/requirements.md": meta("D-20261014-001", "draft", "docs"),
+            "docs/plans/20300101-d001-x/requirements.md": meta("D-20300101-001", "draft", "docs"),
         }
         self.assertEqual(codes(self.run_bundles(files)), ["BUNDLE-UNREGISTERED"])
 
     def test_missing_meta(self):
-        files = self.registered("20261014-d001-x", "D-20261014-001")
-        files["docs/plans/20261014-d001-x/requirements.md"] = "# x\n\n> Status: draft\n\n## 背景\n"
+        files = self.registered("20300101-d001-x", "D-20300101-001")
+        files["docs/plans/20300101-d001-x/requirements.md"] = "# x\n\n> Status: draft\n\n## 背景\n"
         findings = self.run_bundles(files)
         self.assertEqual(codes(findings), ["BUNDLE-META-MISSING"])
         self.assertIn("Stable ID", findings[0].message)
 
     def test_meta_mismatch(self):
-        files = self.registered("20261014-d001-x", "D-20261014-001", status="approved")
-        files["docs/plans/20261014-d001-x/requirements.md"] = meta("D-20261014-001", "draft", "docs")
+        files = self.registered("20300101-d001-x", "D-20300101-001", status="approved")
+        files["docs/plans/20300101-d001-x/requirements.md"] = meta("D-20300101-001", "draft", "docs")
         self.assertEqual(codes(self.run_bundles(files)), ["BUNDLE-META-MISMATCH"])
 
     def test_id_letter(self):
-        new = self.registered("20261014-f001-x", "F-20261014-001", typ="docs")
+        new = self.registered("20300101-f001-x", "F-20300101-001", typ="docs")
         old = self.registered("20260901-f001-y", "F-20260901-001", typ="bugfix")
-        adoption = {"rules_effective_since": "20261014"}
+        adoption = {"rules_effective_since": "20300101"}
         self.assertEqual(codes(self.run_bundles(new, adoption)), ["BUNDLE-ID-LETTER"])
         self.assertEqual(self.run_bundles(old, adoption), [])
         self.assertEqual(codes(self.run_bundles(old)), ["BUNDLE-ID-LETTER"])  # 新项目无生效日期，全部严格
 
     def test_file_whitelist(self):
-        base = "docs/plans/20261014-d001-x/"
-        files = self.registered("20261014-d001-x", "D-20261014-001", extra={
+        base = "docs/plans/20300101-d001-x/"
+        files = self.registered("20300101-d001-x", "D-20300101-001", extra={
             base + "notes.md": "x",
             base + "run.mjs": "x",
             base + "handoff.md": "x",
@@ -129,17 +129,17 @@ class CheckBundlesTest(unittest.TestCase):
             base + "review-peer-20261013.md": "x",
             base + ".DS_Store": "x",
         })
-        findings = self.run_bundles(files, {"bundle_file_exceptions": ["20261014-d001-x/run.mjs"]})
+        findings = self.run_bundles(files, {"bundle_file_exceptions": ["20300101-d001-x/run.mjs"]})
         self.assertEqual([(f.code, f.path.rsplit("/", 1)[1]) for f in findings], [("BUNDLE-FILE", "notes.md")])
 
     def test_record_required(self):
-        base = "docs/plans/20261014-d001-x/"
-        standard = self.registered("20261014-d001-x", "D-20261014-001", status="implemented",
+        base = "docs/plans/20300101-d001-x/"
+        standard = self.registered("20300101-d001-x", "D-20300101-001", status="implemented",
                                    extra={base + "design.md": "x"})
-        light = self.registered("20261014-d001-x", "D-20261014-001", status="verified")
-        light_ok = self.registered("20261014-d001-x", "D-20261014-001", status="verified")
+        light = self.registered("20300101-d001-x", "D-20300101-001", status="verified")
+        light_ok = self.registered("20300101-d001-x", "D-20300101-001", status="verified")
         light_ok[base + "requirements.md"] += "\n## 实施记录\n\n- 已合并\n"
-        draft = self.registered("20261014-d001-x", "D-20261014-001", status="draft",
+        draft = self.registered("20300101-d001-x", "D-20300101-001", status="draft",
                                 extra={base + "design.md": "x"})
         self.assertEqual(codes(self.run_bundles(standard)), ["BUNDLE-RECORD"])
         self.assertEqual(codes(self.run_bundles(light)), ["BUNDLE-RECORD"])
@@ -147,15 +147,20 @@ class CheckBundlesTest(unittest.TestCase):
         self.assertEqual(self.run_bundles(draft), [])
 
     def test_tracks_is_not_a_bundle(self):
-        files = self.registered("20261014-d001-x", "D-20261014-001",
+        files = self.registered("20300101-d001-x", "D-20300101-001",
                                 extra={"docs/plans/tracks/refactor/roadmap.md": "# r\n"})
+        self.assertEqual(self.run_bundles(files), [])
+
+    def test_archive_is_not_a_bundle(self):
+        files = self.registered("20300101-d001-x", "D-20300101-001",
+                                extra={"docs/plans/archive/20260101-f001-old/requirements.md": "# old\n"})
         self.assertEqual(self.run_bundles(files), [])
 
     def test_adoption_bundle_root(self):
         files = {
             "docs/plans/index.md": INDEX_HEAD
-            + index_row("D-20261014-001", "docs", "甲", "draft", "-", "[requirements](changes/20261014-d001-x/requirements.md)"),
-            "docs/plans/changes/20261014-d001-x/requirements.md": meta("D-20261014-001", "draft", "docs"),
+            + index_row("D-20300101-001", "docs", "甲", "draft", "-", "[requirements](changes/20300101-d001-x/requirements.md)"),
+            "docs/plans/changes/20300101-d001-x/requirements.md": meta("D-20300101-001", "draft", "docs"),
         }
         self.assertEqual(self.run_bundles(files, {"bundle_root": "docs/plans/changes"}), [])
         self.assertEqual(codes(self.run_bundles(files)), ["BUNDLE-NAME"])  # 默认平铺时 changes/ 不是合法 bundle 名

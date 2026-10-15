@@ -3,7 +3,9 @@ applies-to: docs/handbook/**/*.md；docs/testing/guides/*.md
 -->
 # <规范名称>
 
-> Status: approved
+<!-- Status：Agent 起草写 draft，人批准后才改 approved。 -->
+
+> Status: draft
 > Last reviewed: YYYY-MM-DD
 
 <!-- 有通用层的项目层文档加一行「> 继承：」并链接通用层；通用层加一行「> 项目落地：」并链接各项目层。 -->

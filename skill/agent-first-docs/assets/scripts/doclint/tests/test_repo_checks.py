@@ -23,7 +23,7 @@ class NamingTest(unittest.TestCase):
     def test_naming(self):
         tmp, root = make_repo({
             "docs/reports/坏名.md": "x",
-            "docs/reports/20261014-ok.md": "x",
+            "docs/reports/20300101-ok.md": "x",
             "docs/reports/README.md": "x",
             "docs/releases/v1.2.3-delivery.md": "x",
             "docs/testing/guides/x.md": "x",
@@ -88,10 +88,17 @@ class FreshnessTest(unittest.TestCase):
         release = repo_checks.check_freshness(root, True, "2026-10-10")
         self.assertIn(("ERROR", "FRESH-STALE", "docs/roadmap.md"), [(f.level, f.code, f.path) for f in release])
 
+    def test_release_without_tag_says_so(self):
+        tmp, root = make_repo({"docs/overview.md": "# 概览\n\n> Last reviewed: 2026-01-01\n"})
+        self.addCleanup(tmp.cleanup)
+        release = repo_checks.check_freshness(root, True, None)
+        self.assertEqual([(f.level, f.code) for f in release], [("INFO", "FRESH-NOTAG")])
+        self.assertEqual(repo_checks.check_freshness(root, False, None), [])
+
 
 class NextIdTest(unittest.TestCase):
     def test_scans_branches_and_worktree(self):
-        tmp, root = make_repo({"docs/plans/20261014-d001-a/requirements.md": "x"})
+        tmp, root = make_repo({"docs/plans/20300101-d001-a/requirements.md": "x"})
         self.addCleanup(tmp.cleanup)
 
         def git(*args):
@@ -108,11 +115,11 @@ class NextIdTest(unittest.TestCase):
         git("add", "docs")
         git("commit", "-q", "-m", "b1")
         git("checkout", "-q", "main")
-        self.assertFalse((root / "docs/plans/20261014-d001-a").exists())
-        (root / "docs/plans/20261014-d002-b").mkdir(parents=True)
-        self.assertEqual(repo_checks.next_id(root, "docs", "20261014")[0], "D-20261014-003")
-        self.assertEqual(repo_checks.next_id(root, "bugfix", "20261014")[0], "B-20261014-001")
-        self.assertEqual(repo_checks.next_id(root, "docs", "20261014")[1], "docs/plans/20261014-d003-<slug>")
+        self.assertFalse((root / "docs/plans/20300101-d001-a").exists())
+        (root / "docs/plans/20300101-d002-b").mkdir(parents=True)
+        self.assertEqual(repo_checks.next_id(root, "docs", "20300101")[0], "D-20300101-003")
+        self.assertEqual(repo_checks.next_id(root, "bugfix", "20300101")[0], "B-20300101-001")
+        self.assertEqual(repo_checks.next_id(root, "docs", "20300101")[1], "docs/plans/20300101-d003-<slug>")
 
 
 if __name__ == "__main__":

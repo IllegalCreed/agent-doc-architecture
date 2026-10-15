@@ -63,9 +63,9 @@ class TemplatesTest(unittest.TestCase):
         requirements = "<!-- template\napplies-to: {bundle_root}/*/requirements.md\n-->\n# 需求\n\n## 背景\n"
         root = self.repo({
             "docs/handbook/templates/plan/requirements.md": requirements,
-            "docs/plans/changes/20261014-d001-x/requirements.md": "# x\n",
-            "docs/plans/changes/20261014-d002-y/requirements.md": "# y\n",
-            "docs/plans/changes/20261014-d003-z/field-contract.md": "# 白名单外存量\n",
+            "docs/plans/changes/20300101-d001-x/requirements.md": "# x\n",
+            "docs/plans/changes/20300101-d002-y/requirements.md": "# y\n",
+            "docs/plans/changes/20300101-d003-z/field-contract.md": "# 白名单外存量\n",
             "docs/handbook/templates/singleton/dir-readme.md": "<!-- template\napplies-to: docs/**/README.md\n-->\n# d\n\n## 导航\n",
             "docs/plans/legacy/README.md": "# 冻结区，不检查\n",
             "docs/releases/v1.0.0.md": "# v\n\n## 新功能\n\n## 修复与改进\n\n## 升级注意\n\nSHA-256\n",
@@ -73,11 +73,11 @@ class TemplatesTest(unittest.TestCase):
         baseline = {
             "bundle_root": "docs/plans/changes",
             "frozen_dirs": ["docs/plans/legacy"],
-            "bundle_file_exceptions": ["20261014-d003-z/field-contract.md"],
-            "template_exceptions": ["docs/plans/changes/20261014-d001-x/requirements.md"],
+            "bundle_file_exceptions": ["20300101-d003-z/field-contract.md"],
+            "template_exceptions": ["docs/plans/changes/20300101-d001-x/requirements.md"],
         }
         got = [(f.code, f.path) for f in templates.check_templates(root, baseline)]
-        self.assertEqual(got, [("TEMPLATE-CONFORM", "docs/plans/changes/20261014-d002-y/requirements.md")])
+        self.assertEqual(got, [("TEMPLATE-CONFORM", "docs/plans/changes/20300101-d002-y/requirements.md")])
 
 
 if __name__ == "__main__":

@@ -4,6 +4,8 @@ must-contain: 套件 | 结果 | 命令 / 证据
 -->
 # vX.Y.Z 封板测试报告
 
+<!-- 文件名按 docs/reports 的记录命名规则：YYYYMMDD-<slug>.md，如 20300102-v1-2-3.md（不能叫 vX.Y.Z.md）。 -->
+
 > 被测发布提交、日期、执行环境。
 
 ## 基线与隔离

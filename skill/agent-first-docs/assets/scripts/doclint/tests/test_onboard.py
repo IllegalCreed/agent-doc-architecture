@@ -15,7 +15,7 @@ CASE_HEADER = (
     "| --- | --- | --- | --- | --- | --- | --- | --- | --- |\n"
 )
 REQUIREMENTS_TEMPLATE = "<!-- template\napplies-to: {bundle_root}/*/requirements.md\n-->\n# 需求\n\n## 背景\n"
-TODAY = "20261015"
+TODAY = "20300102"
 NO_BACKGROUND = meta("D-20260101-001", "draft", "docs").replace("## 背景", "## 其他")
 
 

@@ -13,7 +13,7 @@ from .model import Finding, md_links, parse_meta, parse_tables
 INDEX = "docs/plans/index.md"
 PLANS = "docs/plans"
 DEFAULT_BUNDLE_ROOT = "docs/plans"
-RESERVED_DIRS = frozenset({"tracks"})
+RESERVED_DIRS = frozenset({"tracks", "archive"})
 
 
 @dataclass

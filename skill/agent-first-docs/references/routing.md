@@ -24,11 +24,13 @@
 ## 操作 → 必读规范
 | 操作 | 必读规范 | 一句话要点 |
 |---|---|---|
-| 新建 / 修改 docs 下任何文档 | docs/handbook/engineering/documentation-model.md | 先复制模板、禁止仿写上一份；提交前跑 doc-lint，0 ERROR；取号用 next-id |
-| 写 / 改 / 审查任何测试 | docs/testing/guides/project-testing.md | 先按「工作类型 → 测试层级」选层 |
-| 封板 / 出包 / 打 tag | docs/handbook/engineering/release-process.md | 全量定义以该文件为准；封板前 doc-lint --release 0 ERROR |
-| 数据库结构变更 | docs/handbook/database/… | 改结构必写增量脚本 |
+| 新建 / 修改 docs 下任何文档 | [documentation-model.md](docs/handbook/engineering/documentation-model.md) | 先复制模板、禁止仿写上一份；提交前跑 doc-lint，0 ERROR；取号用 next-id |
+| 写 / 改 / 审查任何测试 | [project-testing.md](docs/testing/guides/project-testing.md) | 先按「工作类型 → 测试层级」选层 |
+| 封板 / 出包 / 打 tag | [release-process.md](docs/handbook/engineering/release-process.md) | 全量定义以该文件为准；封板前 doc-lint --release 0 ERROR |
+| 数据库结构变更 | [database-changes.md](docs/handbook/database/database-changes.md) | 改结构必写增量脚本 |
 | 代码审查 | 该变更的 handoff 审核清单 | 结论必须带「路径:行号」证据 |
+
+**必读规范列写成 Markdown 链接**：`doc-lint` 的 `LINK-ENTRY` 只检查链接，裸路径文本指向了不存在的文件也不会报错。
 
 **分层阅读原则**：L0 始终生效；L1 开工前只读路由表对应的一行；L2 进入模块时再读。不要为一件事通读全库，也不要没读 L1 就凭印象开工。
 ```
