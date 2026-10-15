@@ -13,7 +13,7 @@
 
 1. **盘点**：列出现有 docs 树、各类文档数量、已有的索引与命名习惯。只读，不改。
 2. **安装工具**：`assets/scripts/` → `scripts/`；`assets/templates/` → `docs/handbook/templates/`。此时不动任何旧文档。
-3. **建 `docs/README.md` 和两个索引**（`docs/README.md` 同稳态：按职责分目录）：`docs/plans/index.md`、`docs/testing/cases/index.md` 缺一不可（没有它们，工具无法解析其余内容）。复制 `singleton/plans-index.md`、`singleton/cases-index.md`，删头注释，把存量计划 / 用例登记进去（不改名、不改内容；见下「存量计划没有编号 / 是单文件」），再跑 `python3 scripts/doc-lint.py gen-views`。
+3. **建 `docs/README.md` 和两个索引**（`docs/README.md` 同稳态：按职责分目录，每个一级目录用 `singleton/dir-readme.md` 建 README；规范文档带 `Last reviewed`）：`docs/plans/index.md`、`docs/testing/cases/index.md` 缺一不可（没有它们，工具无法解析其余内容）。复制 `singleton/plans-index.md`、`singleton/cases-index.md`，删头注释，把存量计划 / 用例登记进去（不改名、不改内容；见下「存量计划没有编号 / 是单文件」），再跑 `python3 scripts/doc-lint.py gen-views`。
 4. **生成接入配置**：`python3 scripts/doc-lint.py init-baseline`（先只打印）。它列出 `must-fix`——断链的入口文档、索引表头错误、重复 ID、状态不在词表、bundle 未登记等**不能豁免**的问题，一一修掉，直到不再出现。需要时带 `--bundle-root`（存量 bundle 不平铺在 `docs/plans/` 下）和 `--frozen <目录>`（只读历史归档，整体免模板检查）。
 5. **写入**：`init-baseline --write` 生成 `scripts/doclint/baseline.json`，再跑 `doc-lint`，应为 0 ERROR。配置里：`rules_effective_since`（首次取当天）只让更早的 bundle 免「ID 字母与类型对应」检查；四个豁免列表（命名、bundle 内多余文件、Case ID 格式、模板不符）与 `broken_links_total` 把存量违规降为已知。逐键说明见 `assets/examples/baseline.md`。
 6. **收紧（棘轮）**：每修一处存量违规，该条豁免就失效，`doc-lint` 报 `WARN BASELINE-STALE <路径>`——把它从配置里删掉（手改 JSON 或重跑 `init-baseline --write`，等价）。**重跑只会删条目，绝不新增**：新违规一律报 `must-fix`、不写文件，就地修；确需整体重来时，先删 `baseline.json`，这是需要评审的显式决定。

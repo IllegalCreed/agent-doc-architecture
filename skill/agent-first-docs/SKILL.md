@@ -43,11 +43,12 @@ Agent 自己搭体系时，下面这些最容易选错（每条的证据和被�
 
 1. 把本 skill 的 `assets/scripts/` 复制为项目的 `scripts/`，`assets/templates/` 复制为 `docs/handbook/templates/`。
 2. 建 `docs/README.md`（按**职责**分目录，不按类型或状态）、`docs/plans/index.md` 和 `docs/testing/cases/index.md`（模板 `singleton/plans-index.md`、`singleton/cases-index.md`，缺一个 doc-lint 就报错），再跑 `doc-lint.py gen-views`。
-3. 在入口文件（`AGENTS.md`）写路由表，见 `references/routing.md`。
-4. 新建任何文档：先 `cp` 对应模板、删头注释（从第一行删到 `-->` 为止，H1 保留）、按章节填写。取号：`python3 scripts/doc-lint.py next-id --type <类型>`。
+3. **先写项目层文档模型** `docs/handbook/engineering/documentation-model.md`（模板 `handbook/handbook.md`：编号字母、何时建变更、写回闭环、封板清单、「待人确认」「暂未采用」节），**再**在入口文件（`AGENTS.md`）写路由表，见 `references/routing.md`——路由行指向的文件必须已存在，否则 `LINK-ENTRY` 报错。规范文档必须带 `Last reviewed: YYYY-MM-DD`；Agent 起草的规范 `Status` 写 `draft`，人批准后才改 `approved`。
+4. 新建任何文档：先 `cp` 对应模板、删头注释（`sed '1,/^-->/d' 模板 > 新文档`，H1 保留）、按章节填写。取号：`python3 scripts/doc-lint.py next-id --type <类型>`。
 5. 入口文件已存在时**合并而不是重写**：保留原有规则（补上理由和链接），追加路由表；路由行指向的规范还不存在就别建，写「尚无」。
 6. 跑 `python3 scripts/doc-lint.py`，直到 0 ERROR；单测：`python3 -m unittest discover -s scripts/doclint/tests -t scripts`。
-7. 把「改 docs 后提交前跑 doc-lint」写进路由表，把「`doc-lint --release` 0 ERROR」写进封板清单。
+7. `.gitignore` 加 `__pycache__/`（复制来的脚本和单测会产生）；复制 `assets/scripts` 时先清掉它里面已有的 `__pycache__`。
+8. 把「改 docs 后提交前跑 doc-lint」写进路由表，把「`doc-lint --release` 0 ERROR」写进封板清单。
 
 命令速查：`doc-lint.py`（全部检查）· `--release`（封板模式，概览/路线图过期升为 ERROR）· `next-id --type T` · `gen-views`（重生成用例视图）· `init-baseline`（接入模式，见 onboarding）。
 
