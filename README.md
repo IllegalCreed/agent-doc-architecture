@@ -31,3 +31,7 @@ skill/   系列提炼出的 Agent skill：agent-first-docs（SKILL.md + referenc
 - `assets/`：`scripts/`（doc-lint、链接检查、`next-id`、`init-baseline`，64 个单测）与 `templates/`（通用文档模板）。
 
 安装：把 `skill/agent-first-docs/` 复制到 `~/.claude/skills/`（或你的 Agent 的 skills 目录）。
+
+## 许可
+
+[MIT](LICENSE)
