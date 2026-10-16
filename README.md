@@ -7,7 +7,7 @@ English | [简体中文](README.zh-CN.md)
 The first reader of the docs is the agent. The doc system is a routing system.
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Skill: agent-first-docs](https://img.shields.io/badge/skill-agent--first--docs-6f42c1.svg)](skill/agent-first-docs/SKILL.md)
+[![Skill: agent-first-docs](https://img.shields.io/badge/skill-agent--first--docs-6f42c1.svg)](skill/agent-first-docs-en/SKILL.md)
 [![Blog: 4 posts](https://img.shields.io/badge/blog-4%20posts-orange.svg)](blog/en/01-agent-is-not-amnesiac.md)
 
 </div>
@@ -78,19 +78,30 @@ Chinese originals live in [blog/](blog/01-agent-is-not-amnesiac.md). The design 
 
 ## Skill: agent-first-docs
 
-The series is packaged as a skill you can drop into an agent, at [skill/agent-first-docs/](skill/agent-first-docs/):
+The series is packaged as a skill you can drop into an agent. There are two editions. The rules are the same. The document language is not:
+
+- [skill/agent-first-docs-en/](skill/agent-first-docs-en/) — English. Install this one when the project's documents will be in English.
+- [skill/agent-first-docs/](skill/agent-first-docs/) — 简体中文. Install this one when the project's documents will be in Chinese.
+
+Each edition is self-contained. Copy the folder and it works on its own:
 
 - `SKILL.md` — when to use it, the 10 decisions you cannot skip, the steady-state steps, and the red flags.
 - `references/` — routing, the vocabulary and format cheat sheet, decisions and evidence, lifecycle, onboarding an existing tree, and the full shared spec.
 - `assets/` — `scripts/` (`doc-lint`, link checking, `next-id`, `init-baseline`, 64+ unit tests) and `templates/` (the document templates).
 
-The skill documentation is in Chinese. An English edition is coming.
+Each edition's checker expects that edition's labels. In the English edition the index header, the case-table header, the implementation-record heading, and the inheritance markers are English (`scripts/doclint/vocab.py`). In the Chinese edition they are Chinese. Do not mix the two.
 
-Install: copy `skill/agent-first-docs/` to `~/.claude/skills/` (or your agent's skills directory).
+Install: copy one skill folder to `~/.claude/skills/` (or your agent's skills directory).
 
 ```bash
+# English
+cp -R skill/agent-first-docs-en ~/.claude/skills/
+
+# 简体中文
 cp -R skill/agent-first-docs ~/.claude/skills/
 ```
+
+The two folders use different skill names (`agent-first-docs-en` and `agent-first-docs`), so both can sit in the skills directory. Install the one that matches the language you will write documents in.
 
 ## Repository
 
@@ -106,8 +117,9 @@ scripts/           Post checker check-post.py
                    --repo scans the whole repo)
 tests/             Unit tests for the checker
                    (python3 -m unittest discover -s tests)
-skill/             The skill extracted from the series: agent-first-docs
-                   (SKILL.md + references/ + assets/ you can copy)
+skill/             The skill extracted from the series
+                   agent-first-docs-en (English) and agent-first-docs (Chinese)
+                   (each has SKILL.md + references/ + assets/ you can copy)
 ```
 
 ## License

@@ -77,19 +77,30 @@ Agent 维护它们，但不从它们获取工作知识。
 
 ## Skill：agent-first-docs
 
-系列落成可直接使用的 skill，放在 [skill/agent-first-docs/](skill/agent-first-docs/)：
+系列落成可直接使用的 skill，中英各一份，规则相同，文档语言不同：
+
+- [skill/agent-first-docs/](skill/agent-first-docs/)：简体中文。项目文档用中文时安装这一份。
+- [skill/agent-first-docs-en/](skill/agent-first-docs-en/)：英文。项目文档用英文时安装这一份。
+
+每一份都是自包含的，复制整个目录即可单独使用：
 
 - `SKILL.md`：何时使用、10 条不能省的决策、稳态步骤、red flags。
 - `references/`：路由、词表与格式速查、决策与证据、生命周期、接入（存量项目）、通用规范全文。
 - `assets/`：`scripts/`（doc-lint、链接检查、`next-id`、`init-baseline`，64+ 个单测）与 `templates/`（通用文档模板）。
 
-skill 文档目前是中文，英文版随后补上。
+各版的检查器只认该版的标签。中文版的索引表头、用例表头、实施记录标题、继承标记是中文（`scripts/doclint/vocab.py`）；英文版是英文。不要混用。
 
-安装：把 `skill/agent-first-docs/` 复制到 `~/.claude/skills/`（或你的 Agent 的 skills 目录）。
+安装：把其中一个 skill 目录复制到 `~/.claude/skills/`（或你的 Agent 的 skills 目录）。
 
 ```bash
+# 简体中文
 cp -R skill/agent-first-docs ~/.claude/skills/
+
+# 英文
+cp -R skill/agent-first-docs-en ~/.claude/skills/
 ```
+
+两个目录的 skill 名不同（`agent-first-docs` 与 `agent-first-docs-en`），可以同时放在 skills 目录里。安装与你要写的文档语言一致的那一份。
 
 ## 仓库结构
 
@@ -104,8 +115,9 @@ scripts/           稿件检查脚本 check-post.py
                    （脱敏、篇幅、章节、数字出处；--repo 全仓脱敏扫描）
 tests/             检查脚本的单元测试
                    （python3 -m unittest discover -s tests）
-skill/             系列提炼出的 Agent skill：agent-first-docs
-                   （SKILL.md + references/ + 可直接复制的 assets/）
+skill/             系列提炼出的 Agent skill
+                   agent-first-docs（中文）与 agent-first-docs-en（英文）
+                   （各自含 SKILL.md + references/ + 可直接复制的 assets/）
 ```
 
 ## 许可

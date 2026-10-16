@@ -1,0 +1,32 @@
+{
+  "bundle_root": "docs/plans/changes",
+  "rules_effective_since": "20260101",
+  "frozen_dirs": [
+    "docs/plans/legacy"
+  ],
+  "broken_links_total": 12,
+  "naming_exceptions": [
+    "docs/reports/old-report.md"
+  ],
+  "bundle_file_exceptions": [
+    "20251201-f001-import/run-import.sh"
+  ],
+  "case_id_exceptions": [
+    "LEGACY-A"
+  ],
+  "template_exceptions": [
+    "docs/plans/changes/20251201-f001-import/requirements.md"
+  ],
+  "inherit_pairs": [
+    ["docs/handbook/engineering/documentation-model.md", "docs/handbook/engineering/general-model.md"]
+  ],
+  "fresh_docs": [
+    "docs/overview.md",
+    "docs/roadmap.md",
+    "docs/handbook/**/*.md"
+  ],
+  "strict_fresh": [
+    "docs/overview.md",
+    "docs/roadmap.md"
+  ]
+}
