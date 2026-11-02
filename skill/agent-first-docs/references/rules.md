@@ -61,7 +61,7 @@
 | Stable ID | Type | 标题 | 状态 | 下一步 | Plan |
 ```
 
-标题 ≤ 50 字；下一步 ≤ 80 字，终态（verified / superseded / deprecated / obsolete / cancelled）写 `-`；Plan 列只放变更入口链接。**禁止日期横幅和多行导语**——进度写进变更自己的文档，版本动态写路线图（路线图横幅最多 5 块，旧的归档）。
+标题 ≤ 50 字；下一步 ≤ 80 字，终态（verified / superseded / deprecated / obsolete / cancelled）写 `-`；Plan 列只放变更入口链接。**禁止日期横幅和多行导语**——进度写进变更自己的文档，版本动态写路线图（路线图横幅最多 5 块，旧内容按[退出规则](lifecycle.md#文档与产物退出)归并、留证或清理）。
 
 ## 目录、命名、专题
 

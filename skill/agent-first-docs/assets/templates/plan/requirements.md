@@ -49,4 +49,4 @@ applies-to: {bundle_root}/*/requirements.md
 
 ## 实施记录（可选）
 
-<!-- 轻量形态（无 design.md）在状态到达 implemented 前必须保留本节：根因、改动文件、提交 / MR、实际跑过的测试命令与结果。标准形态删除本节，改写 implementation.md。 -->
+<!-- 轻量形态（无 design.md）在状态到达 implemented 前必须保留本节：根因、改动文件、提交 / MR、执行身份与环境、实际跑过的测试命令与结果；保留失败与重试事实、必要证据和恢复入口。收尾在本节记录知识去向、核对依赖后的清理结果、暂存项负责人及复核日期 / 触发条件，不另建退出报告。标准形态删除本节，改写 implementation.md。 -->

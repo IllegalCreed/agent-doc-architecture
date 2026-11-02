@@ -10,6 +10,7 @@
 - The header comment's `applies-to` declares the paths this template governs. `must-contain` and `must-not-contain` declare required and forbidden text (text inside an HTML comment does not count). doc-lint reads the template and checks against it. There is no separate rule list.
 - A document kind with no applicable template: create the template in this directory, register it in the table below, then write the document.
 - Changing a template does not reach back into documents that already exist. Documents that predate onboarding and do not conform are registered in `template_exceptions` of the onboarding config. That list may only shrink.
+- At task closeout, record knowledge destinations, necessary evidence and recovery entries, cleanup results, and held items in the existing implementation or migration record. No separate retirement report is needed. Follow "Document retirement" in the project-layer documentation model; template hints do not mean doc-lint has verified the content.
 
 ## Catalog
 

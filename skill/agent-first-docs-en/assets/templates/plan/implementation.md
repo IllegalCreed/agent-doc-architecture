@@ -27,8 +27,12 @@ applies-to: {bundle_root}/*/implementation.md
 
 ## Verification record
 
-<!-- The commands actually run and the raw results. List failures and skips on their own, with a cause. -->
+<!-- Executor identity (person / agent and execution role), environment / version, commands actually run, and key results. List failures, retries, and skips with causes; do not overwrite failures with the final success. Give stable references for necessary original evidence. -->
 
 ## Leftovers
 
 <!-- For each item, say whether it blocks release. -->
+
+## Document and artifact retirement (optional)
+
+<!-- At closeout, follow the project's documentation model: record destinations and applicability conditions for knowledge that still applies, necessary evidence and recovery entries, and temporary files, duplicates, or reproducible artifacts removed after dependency checks. Held items need an owner, open checks, and a review date or trigger. No complete process transcript or separate retirement report is needed. -->

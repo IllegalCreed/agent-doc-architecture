@@ -3,7 +3,7 @@ applies-to: docs/reports/tests/*.md；docs/reports/tests/features/*.md；docs/re
 -->
 # 测试报告：<主题>
 
-> 关联变更 Stable ID、被测提交、日期。
+> 关联变更 Stable ID、被测提交、日期、执行身份（执行人 / Agent 与执行角色）、环境。
 
 ## 范围与结论
 
@@ -18,8 +18,10 @@ applies-to: docs/reports/tests/*.md；docs/reports/tests/features/*.md；docs/re
 
 ## 失败归因与红绿记录
 
+<!-- 保留首轮失败与重试事实，不以最终成功覆盖。 -->
+
 ## 证据
 
-<!-- 日志路径与 SHA-256、报告文件。 -->
+<!-- 必要日志的稳定路径与 SHA-256、报告文件、复核 / 恢复入口（提交、备份或回滚说明）。必要的原始日志不能以重跑可生成日志为由清理。 -->
 
 ## 未覆盖与风险

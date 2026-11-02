@@ -1,6 +1,6 @@
 # Project-layer documentation model: a minimal example
 
-This is the `docs/handbook/engineering/documentation-model.md` that step 3 of the steady state asks you to write. Below is a skeleton you can edit directly (a fictional small invoicing system). Write only the parts you have **adopted**. List the parts you have not adopted under "Not adopted yet". The full vocabulary is in `rules.md`. The write-back loop and the enforcement gradient are in `lifecycle.md`.
+This is the `docs/handbook/engineering/documentation-model.md` that step 3 of the steady state asks you to write. Below is a skeleton you can edit directly (a fictional small invoicing system). Write only the parts you have **adopted**. List the parts you have not adopted under "Not adopted yet". The full vocabulary is in `rules.md`. The write-back loop, retirement criteria, and enforcement gradient are in `lifecycle.md`.
 
 ```markdown
 # Documentation model (project layer)
@@ -11,7 +11,7 @@ This is the `docs/handbook/engineering/documentation-model.md` that step 3 of th
 ## AI Quick Path
 
 This document answers: how this project names documents, when to create a change document, and which documents to update after the code changes.
-Read "Changes and numbering" and "Write-back loop" first. Before sealing a release, read "Release-seal checklist".
+Read "Changes and numbering" and "Write-back loop" first. Before task closeout or cleanup, read "Document retirement". Before sealing a release, read "Release-seal checklist".
 
 ## Changes and numbering
 
@@ -26,6 +26,13 @@ Read "Changes and numbering" and "Write-back loop" first. Before sealing a relea
 | A change starts | Create the bundle and add one row to the main index |
 | Implementation is done | Set the status to implemented, register the cases, and update the index "Next step" |
 | A release | The changelog, the release-seal test report, and Last reviewed on the overview |
+
+## Document retirement
+
+- At task closeout, cancellation, supersession, or migration end, verify knowledge that still applies and consolidate it into the matching current spec or guide, keeping applicability conditions and sources.
+- Keep necessary records in the original task evidence or historical archive: executor identity, environment / version, key actions and results, failures and retries, and recovery entries. Registered bundles and Cases keep stable paths and identities.
+- Once knowledge is incorporated and necessary evidence retained, check that documents, scripts / CI, delivery entries, ongoing tasks, and recovery needs no longer depend on temporary files, duplicates, or reproducible artifacts before removing them. Confirm reproducible artifacts have available inputs and generation methods.
+- Record destinations and held items in the existing implementation record, without a separate cleanup ledger. Items with uncertain uses need an owner and review date or trigger; reassess when due. Link checks detect broken links, but cannot prove there are no consumers.
 
 ## Release-seal checklist
 

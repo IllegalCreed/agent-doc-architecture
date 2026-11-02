@@ -5,7 +5,7 @@ applies-to: docs/roadmap.md
 
 > Last reviewed: YYYY-MM-DD
 
-<!-- 顶部日期横幅最多 5 块；变更状态不在这里复述，看 plans/index.md。 -->
+<!-- 顶部日期横幅最多 5 块；旧内容按项目文档模型的退出规则归并、留证或清理，无需全部归档。变更状态不在这里复述，看 plans/index.md。 -->
 
 ## 当前阶段
 

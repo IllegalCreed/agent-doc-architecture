@@ -5,7 +5,7 @@ applies-to: docs/roadmap.md
 
 > Last reviewed: YYYY-MM-DD
 
-<!-- At most 5 date banners at the top. Do not restate change status here; see plans/index.md. -->
+<!-- At most 5 date banners at the top. Consolidate, retain evidence, or remove older content under the project's documentation-retirement rules; do not archive everything. Do not restate change status here; see plans/index.md. -->
 
 ## Current stage
 

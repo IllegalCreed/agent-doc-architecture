@@ -61,7 +61,7 @@ Only: an H1, one line of explanation, one table, and topic entries. The header i
 | Stable ID | Type | Title | Status | Next step | Plan |
 ```
 
-Title ≤ 50 characters. Next step ≤ 80 characters. A terminal status (verified / superseded / deprecated / obsolete / cancelled) writes `-`. The Plan column holds only the link to the change entry. **No date banners and no multi-line preamble.** Progress belongs in the change's own documents. Version news belongs on the roadmap (at most 5 banners; archive the older ones).
+Title ≤ 50 characters. Next step ≤ 80 characters. A terminal status (verified / superseded / deprecated / obsolete / cancelled) writes `-`. The Plan column holds only the link to the change entry. **No date banners and no multi-line preamble.** Progress belongs in the change's own documents. Version news belongs on the roadmap (at most 5 banners; consolidate, retain evidence, or remove older content under the [retirement rules](lifecycle.md#retiring-documents-and-artifacts)).
 
 ## Directories, names, topics
 

@@ -49,4 +49,4 @@ applies-to: {bundle_root}/*/requirements.md
 
 ## Implementation record (optional)
 
-<!-- Lightweight shape (no design.md): keep this section until the status reaches implemented, and drop " (optional)" so the heading is exactly "## Implementation record". Record the root cause, the files changed, the commit or MR, and the test commands actually run with their results. The standard shape deletes this section and writes implementation.md instead. -->
+<!-- Lightweight shape (no design.md): keep this section until the status reaches implemented, and drop " (optional)" so the heading is exactly "## Implementation record". Record the root cause, files changed, commit or MR, executor identity and environment, and test commands actually run with their results. Preserve failures and retries, necessary evidence, and recovery entries. At closeout, record knowledge destinations, cleanup results after dependency checks, and owners and review dates or triggers for held items here, without a separate retirement report. The standard shape deletes this section and writes implementation.md instead. -->

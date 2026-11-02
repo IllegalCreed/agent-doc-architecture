@@ -6,7 +6,7 @@ must-contain: Suite | Result | Command / evidence
 
 <!-- Name the file by the record-naming rule for docs/reports: YYYYMMDD-<slug>.md, for example 20300102-v1-2-3.md (not vX.Y.Z.md). -->
 
-> The release commit under test, the date, and the environment it ran in.
+> The release commit under test, date, environment, and executor identity (person / agent and execution role).
 
 ## Baseline and isolation
 
@@ -31,4 +31,4 @@ must-contain: Suite | Result | Command / evidence
 
 ## Leftovers
 
-<!-- Coverage gaps, and items still to run. -->
+<!-- Coverage gaps, items still to run, and necessary evidence and recovery entries. Apply the project's documentation-retirement rules to temporary or duplicate artifacts. Held items need an owner and a review date or trigger. -->

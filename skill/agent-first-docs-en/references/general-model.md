@@ -1,7 +1,7 @@
 # Shared layered documentation spec
 
 > Status: approved
-> Last reviewed: 2026-10-14
+> Last reviewed: 2026-11-02
 > Scope: the documentation system of a software project developed with AI collaboration.
 > After you copy this into a project: `docs/overview.md`, `docs/roadmap.md`, the release-seal process, and similar documents are created **only when they have content**. Do not pre-create an empty document to silence a dangling reference. Write "none yet" instead.
 > Project landing: <after copying into a project, change this to a link to the project-layer documentation model, for example `[project-layer documentation model](documentation-model.md)`>
@@ -595,7 +595,22 @@ The project layer should state:
 - The map from Type to the ID initial, and the command that takes the next number.
 - The naming rule for an owner, for example a team, a business domain, a service name, or a code owner.
 - The entries for this project's user manual, deployment runbook, and operations runbook.
+- Destinations for retired documents and artifacts, and owners and review dates or triggers for held items (see 10.6).
 - The onboarding config used when the project adopts the rules partway through (see section 13).
+
+### 10.6 Retiring documents and artifacts
+
+At task closeout, cancellation, supersession, or the end of a migration, decide by future use. One file may contain both knowledge and evidence:
+
+1. **Verified knowledge that will still apply:** consolidate it into the matching current spec, guide, or project knowledge. Keep applicability conditions and sources, and resolve conflicting definitions. The destination must incorporate the knowledge, and the original must have no independent evidence value, before the original can be removed.
+2. **Records necessary to prove this conclusion:** retain them in the matching task evidence or historical archive. Keep executor identity (person / agent and execution role), environment / version, key actions and results, failures and retries, and a recovery entry (commit, backup, or rollback instructions). Keep enough to review and recover, without a complete process transcript. Record any explicit retention period or review trigger in the matching record.
+3. **Temporary files, duplicates, and reproducible artifacts with no consumers:** verify, then remove; do not archive them all. Check document references, scripts / CI, delivery entries, ongoing tasks, and recovery needs. For reproducible artifacts, confirm the inputs and generation method remain available. A successful rerun cannot replace original evidence of a failed execution.
+
+Check dependencies before any cleanup. Registered bundles, Cases, and required deliverables are not deleted or moved at closeout; maintain status, replacement chains, and traceability entries as usual. Archiving means leaving current fact and the default route, without requiring a directory move. Keep legacy documents until their use is understood; do not rewrite history to standardize its format.
+
+Record destinations, cleanup results, and held items in the existing implementation or migration record, without a separate cleanup ledger. Held items need an owner, open checks, and a review date or trigger; reassess when due. After cleanup or a move, run the link check and regenerate derived views if needed. Passing checks alone cannot prove there are no consumers.
+
+**Retirement is complete when knowledge has been carried forward, necessary evidence is traceable, and remaining disposable artifacts have no dependencies. Archiving is not the default destination.**
 
 ---
 
@@ -615,6 +630,7 @@ Before committing a change, check at least:
 - [ ] Type, status, completion, and the replacement relationship in `docs/plans/index.md` were updated together.
 - [ ] Whether the user manual needs an update.
 - [ ] The roadmap keeps only the index and is not stuffed with implementation detail.
+- [ ] At closeout, knowledge was incorporated, necessary evidence and recovery entries were retained, and temporary or duplicate artifacts were handled after dependency checks; held items have owners and review conditions.
 
 ---
 

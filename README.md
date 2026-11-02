@@ -86,7 +86,7 @@ The series is packaged as a skill you can drop into an agent. There are two edit
 Each edition is self-contained. Copy the folder and it works on its own:
 
 - `SKILL.md` — when to use it, the 10 decisions you cannot skip, the steady-state steps, and the red flags.
-- `references/` — routing, the vocabulary and format cheat sheet, decisions and evidence, lifecycle, onboarding an existing tree, and the full shared spec.
+- `references/` — routing, the vocabulary and format cheat sheet, decisions and evidence, lifecycle (including consolidating knowledge, keeping necessary evidence, and removing artifacts with no consumers), onboarding an existing tree, and the full shared spec.
 - `assets/` — `scripts/` (`doc-lint`, link checking, `next-id`, `init-baseline`, 64+ unit tests) and `templates/` (the document templates).
 
 Each edition's checker expects that edition's labels. In the English edition the index header, the case-table header, the implementation-record heading, and the inheritance markers are English (`scripts/doclint/vocab.py`). In the Chinese edition they are Chinese. Do not mix the two.

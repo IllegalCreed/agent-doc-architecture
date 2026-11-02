@@ -12,13 +12,14 @@
 ## 2. A finished change stays where it is
 
 - **Rejected: move it to `archive/` or `done/` when it is finished.** Once a change is cited (a case, a changelog, another change's `Related plans`), moving the directory breaks a batch of links. The agent then edits a pile of unrelated files to repair the links.
-- **What to do:** status lives in the metadata (`verified`). The status column of the index is a projection. Only superseded history goes in `docs/plans/archive/` (a reserved directory of doc-lint; directories inside it are not checked as bundles), and it keeps `Replaced by`.
+- **What to do:** status lives in the metadata (`verified`). The status column of the index is a projection. A registered bundle stays in place even when superseded, and records `Replaced by`. Leaving the current route does not mean moving directories. `docs/plans/archive/` is a reserved directory of doc-lint; its contents are not checked as bundles. Do not use it to bypass registration and status checks.
 - **Baseline observation:** an agent without the skill, designing the system itself, wrote into the rules "when finished, `git mv` it to `plans/archive/`".
 
-## 3. Do not delete old documents, and do not rewrite them
+## 3. Preserve necessary history during migration; retire content by its use
 
 - **Rejected: rewrite old documents to make the format uniform.** A rewrite drops the decision context of the time. An agent that rewrites also tends to "polish", and makes a conclusion that is no longer true read as if it were true now.
-- **What to do:** move the text as-is. Text you move out goes into a migration record (`migration-record`). **Check the facts once before the move and once after.** An as-is move carries errors with it, and not checking after the move is the same as accepting the errors.
+- **During migration:** keep an old document until its use is understood. Preserve the original decision context when moving it, and store necessary original text in a migration record (`migration-record`). **Check the facts once before the move and once after.** An as-is move carries errors with it, and not checking after the move is the same as accepting the errors.
+- **Retirement boundary:** preserving history does not require keeping every draft or duplicate forever. Consolidate verified knowledge that still applies into current documents; retain the records needed to prove the conclusion. Remove temporary files, duplicates, and reproducible artifacts after confirming they have no consumers. See [Lifecycle: retiring documents and artifacts](lifecycle.md#retiring-documents-and-artifacts) for the criteria.
 
 ## 4. An index only answers "where to read"
 

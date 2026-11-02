@@ -127,13 +127,31 @@ Post 2 gave the test: if the agent changes, or the machine changes, should this 
 
 So the full rule is: personal memory holds only collaboration preferences; project-level lessons go into L0 or L1 according to their layer; before a migration, verify and then move; and check the facts once before the move and once after.
 
-## 7. Mechanism 5: freshness
+## 7. Mechanism 5: freshness and retirement
 
 Current-fact documents — the project overview, the roadmap, the various specs — are believed by the agent as soon as it reads them. What they fear most is having been right once and being wrong now. Post 1 noted that the project overview stopped on September 3, and several versions shipped after that without a change to it.
 
-**A review date.** The header of a current-fact document must carry `Last reviewed: YYYY-MM-DD`. If it is missing, that is an error. A review date earlier than the most recent release means the last time someone confirmed it was still right was before the previous version. The ordinary check only warns on this. It does not block the work, but the warning is visible every time. After the cleanup was merged there were 10 such warnings. In release-seal mode (`--release`), an outdated project overview or roadmap is an error outright.
+**A review date.** The header of a current-fact document must carry `Last reviewed: YYYY-MM-DD`. If it is missing, that is an error. A review date earlier than the most recent release means the last time someone confirmed it was still right was before the previous version. The ordinary check only warns on this. It does not block the work, but the warning is visible every time. After the cleanup was merged there were 10 such warnings. In release-seal mode (`--release`), an outdated project overview or roadmap is an error outright. The date must come from checking the content; do not refresh it just to silence the warning.
 
-**A cap on banners.** Post 1 noted that the date banners at the top of the roadmap were stacked one on another and had become a second changelog. The rule now: the top of the roadmap keeps at most 5 banners, and older ones move into the archive. The plan index is allowed none. The full record belongs in implementation records and in L3 execution reports. The two release documents are deliverables, and they do not receive banners. A banner says "what happened recently." Capping it is what makes it roll.
+**A cap on banners.** Post 1 noted that the date banners at the top of the roadmap were stacked one on another and had become a second changelog. The rule adopted during that cleanup was at most 5 banners, with older ones archived. The plan index allowed none. Execution records belong in implementation records and L3 reports; the two release documents are deliverables and do not receive banners.
+
+### Retirement: decide by future use
+
+Archiving alone thins the current directory while the historical area keeps growing. Building on that cleanup, I am adding three destinations for retiring content:
+
+| Content | Destination | Completion criteria |
+|---|---|---|
+| Verified knowledge that will still apply | A current spec, guide, or project knowledge | Keep applicability conditions and sources, resolve conflicts, and confirm the destination has incorporated it |
+| Records necessary to prove this conclusion | The matching task evidence or historical archive | Enough to review the conclusion; retain executor identity, failures, and recovery entries |
+| Temporary files, duplicates, and reproducible artifacts with no consumers | Verify, then remove | No current references, task or tool dependencies, or recovery use; reproducible artifacts have available inputs and generation methods |
+
+Decide by content. Knowledge in a record can be consolidated while its original execution evidence stays. Executor identity means the person / agent and execution role; evidence also records the environment, version, key actions, and results. A successful retry must not overwrite the initial failure. A recovery entry can be a commit, backup, or rollback instructions, without keeping the entire process transcript.
+
+**No links found does not prove there are no consumers.** Check scripts / CI, delivery entries, ongoing tasks, and recovery needs too. The original failure log from one execution cannot be replaced by a rerun. Registered bundles, Cases, and required deliverables keep stable identities and paths.
+
+Do this check at task closeout, cancellation, supersession, or migration end. Put knowledge destinations, evidence and recovery entries, and cleanup results in the existing implementation record, without creating another retirement report. Held items with uncertain uses need an owner and a review date or trigger; reassess when due. Record any explicit evidence retention period or review condition there too. doc-lint checks structure and broken links; it cannot prove that knowledge was incorporated or external dependencies disappeared.
+
+Under these rules, necessary records from old banners become evidence, and incorporated duplicates can be removed. **Retirement is complete when knowledge has been carried forward, necessary evidence is traceable, and remaining disposable artifacts have no dependencies. Archiving is not the default destination.**
 
 ## 8. Where the human adjudicates
 
@@ -213,7 +231,7 @@ This happened in the repo where this series was written. While the plan was bein
 2. Three principles. Write-back is part of the change (no memory across sessions). A machine enforces the convention, and the human only adjudicates (is also the main author, and can run scripts). Zero tolerance at the entry layer, and deeper layers have a baseline that may only fall, never rise (every session enters through the entry and follows the literal text).
 3. Every rule sits on the enforcement ladder, from narrative up to an automatic check. The question to ask is "can it climb one more rung?"
 4. doc-lint is the test suite for docs. It does not depend on a hook or on CI. The enforcement points are one row of the routing table plus the release-seal gate. The cost is that a violation can enter the repo first, with the release seal as the backstop.
-5. Personal memory holds only collaboration preferences, and a migration verifies first. Current fact carries a review date, and banners are capped so they roll.
+5. Personal memory holds only collaboration preferences, and a migration verifies first. Current fact carries a review date. At retirement, consolidate knowledge, retain necessary evidence, and remove artifacts with no dependencies.
 6. The mechanism breaks on its own: the tool false-positives, rules go stale, exemptions can quietly grow, and even the redaction list can leak. The checker has to be checked too.
 
 ### End of the series

@@ -25,6 +25,7 @@
 | 操作 | 必读规范 | 一句话要点 |
 |---|---|---|
 | 新建 / 修改 docs 下任何文档 | [documentation-model.md](docs/handbook/engineering/documentation-model.md) | 先复制模板、禁止仿写上一份；提交前跑 doc-lint，0 ERROR；取号用 next-id |
+| 任务收尾 / 迁移结束 / 清理文档产物 | [documentation-model.md](docs/handbook/engineering/documentation-model.md#文档退出) | 先归并知识、留足证据与恢复入口，核对依赖后清理 |
 | 写 / 改 / 审查任何测试 | [project-testing.md](docs/testing/guides/project-testing.md) | 先按「工作类型 → 测试层级」选层 |
 | 封板 / 出包 / 打 tag | [release-process.md](docs/handbook/engineering/release-process.md) | 全量定义以该文件为准；封板前 doc-lint --release 0 ERROR |
 | 数据库结构变更 | [database-changes.md](docs/handbook/database/database-changes.md) | 改结构必写增量脚本 |

@@ -25,6 +25,7 @@ The user manual, the changelog, and the delivery note are **deliverables**. Thei
 | Operation | Required spec | One-line point |
 |---|---|---|
 | Create or edit any document under docs | [documentation-model.md](docs/handbook/engineering/documentation-model.md) | Copy a template first; do not imitate the previous document. Run doc-lint before committing, 0 ERROR. Take numbers with next-id |
+| Close a task, finish a migration, or clean up document artifacts | [documentation-model.md](docs/handbook/engineering/documentation-model.md#document-retirement) | Consolidate knowledge, retain necessary evidence and recovery entries, then check dependencies before cleanup |
 | Write, change, or review any test | [project-testing.md](docs/testing/guides/project-testing.md) | Pick the layer from "kind of work → test layer" first |
 | Seal a release, produce a package, or cut a tag | [release-process.md](docs/handbook/engineering/release-process.md) | The full definition is that file. Before sealing, doc-lint --release is 0 ERROR |
 | Change the database schema | [database-changes.md](docs/handbook/database/database-changes.md) | A schema change requires an incremental script |
